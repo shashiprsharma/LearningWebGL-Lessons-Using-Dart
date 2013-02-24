@@ -1,6 +1,6 @@
-#library("gl-matrix");
-#import('dart:html');
-#import('dart:math');
+library glmatrix;
+import 'dart:html';
+import 'dart:math';
 
 /*
  * Copyright (c) 2011 Brandon Jones
@@ -24,12 +24,12 @@
  *    3. This notice may not be removed or altered from any source
  *    distribution.
  */
-#source("Matrix.dart");
-#source("Matrix3.dart");
-#source("Quaternion.dart");
-#source("Vector2.dart");
-#source("Vector3.dart");
-#source("Vector4.dart");
+part 'Matrix.dart';
+part 'Matrix3.dart';
+part 'Quaternion.dart';
+part 'Vector2.dart';
+part 'Vector3.dart';
+part 'Vector4.dart';
 
 
 

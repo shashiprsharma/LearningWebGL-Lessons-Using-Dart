@@ -315,9 +315,7 @@ class WebGLTest
   {    
     window.requestAnimationFrame(tick);    
     this.drawScene();
-    this.animate();
-    
-    
+    this.animate();    
   }
   
   void run()

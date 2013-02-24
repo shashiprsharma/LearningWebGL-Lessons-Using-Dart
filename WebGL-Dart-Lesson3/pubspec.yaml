@@ -1,5 +1,4 @@
 name:  WebGL_Dart_Lesson3
 description:  A sample application
-
-#dependencies:
-#  unittest: { sdk: unittest }
+dependencies:
+  browser: any

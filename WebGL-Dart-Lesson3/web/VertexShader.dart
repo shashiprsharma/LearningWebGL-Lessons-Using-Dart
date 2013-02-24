@@ -1,4 +1,4 @@
-#library("VertexShader");
+library VertexShader;
 
 
 class VertexShader {  

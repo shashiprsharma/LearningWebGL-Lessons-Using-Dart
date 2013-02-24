@@ -1,4 +1,6 @@
-class Vector3 implements Hashable {
+part of glmatrix;
+
+class Vector3 {
   Float32Array dest;
   
   
@@ -74,11 +76,11 @@ class Vector3 implements Hashable {
   }
   
   
-  double get X() => dest[0];
+  double get X => dest[0];
   void set X(double val) { dest[0] = val;}
-  double get Y() => dest[1];
+  double get Y => dest[1];
   void set Y(double val) { dest[1] = val;}
-  double get Z() => dest[2];
+  double get Z => dest[2];
   void set Z(double val) { dest[2] = val;}
   
   void setXYZ(double x, double y, double z) {
@@ -208,7 +210,7 @@ class Vector3 implements Hashable {
    * Writes it into [result] or creates a new Vector3 if not specified.
    */
   static Vector3 Scale(Vector3 vec, double val, [Vector3 result]) {
-      if (result == null || vec === result) {
+      if (result == null || identical(vec, result)) {
           vec.dest[0] *= val;
           vec.dest[1] *= val;
           vec.dest[2] *= val;
@@ -239,7 +241,7 @@ class Vector3 implements Hashable {
           result.dest[1] = 0.0;
           result.dest[2] = 0.0;
           return result;
-      } else if (len === 1) {
+      } else if (identical(len, 1)) {
           result.dest[0] = x;
           result.dest[1] = y;
           result.dest[2] = z;
@@ -299,8 +301,8 @@ class Vector3 implements Hashable {
   Vector3 clamp(Vector3 min, Vector3 max) => Clamp(this,min,max,this);
 
   /// Caclulates the length of this
-  double get length() => sqrt(pow(X,2) + pow(Y,2) + pow(Z,2) );
-  double get lengthSquare() => pow(X,2) + pow(Y,2) + pow(Z,2);
+  double get length => sqrt(pow(X,2) + pow(Y,2) + pow(Z,2) );
+  double get lengthSquare => pow(X,2) + pow(Y,2) + pow(Z,2);
 
   /**
    * Caclulates the dot product of [vec] and [other]
@@ -430,7 +432,7 @@ class Vector3 implements Hashable {
     if(m.inverse() == null) { return null; }
     
     Matrix.MultiplyVec4(m, v, v);
-    if(v.dest[3] === 0.0) { return null; }
+    if(identical(v.dest[3], 0.0)) { return null; }
     
     result.dest[0] = v.dest[0] / v.dest[3];
     result.dest[1] = v.dest[1] / v.dest[3];
@@ -484,7 +486,8 @@ class Vector3 implements Hashable {
    * Returns a string representation of this vector
    */
   String toString() => "[$X, $Y, $Z]";
-  int get hashCode() {
+  
+  int get hashCode {
     // fix till hashCode works proper on doubles
     return "[$X, $Y, $Z]".hashCode;
     var erg  = 37;

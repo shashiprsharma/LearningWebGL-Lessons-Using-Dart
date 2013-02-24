@@ -1,3 +1,5 @@
+part of glmatrix;
+
 class Matrix3 {
 
   Float32Array dest;
@@ -57,23 +59,23 @@ class Matrix3 {
   
 
   void set m11(double value) {dest[0] = value;}
-  double get m11() => dest[0];
+  double get m11 => dest[0];
   void set m12(double value) {dest[1] = value;}
-  double get m12() => dest[1];
+  double get m12 => dest[1];
   void set m13(double value) {dest[2] = value;}
-  double get m13() => dest[2];
+  double get m13 => dest[2];
   void set m21(double value) {dest[3] = value;}
-  double get m21() => dest[3];
+  double get m21 => dest[3];
   void set m22(double value) {dest[4] = value;}
-  double get m22() => dest[4];
+  double get m22 => dest[4];
   void set m23(double value) {dest[5] = value;}
-  double get m23() => dest[5];
+  double get m23 => dest[5];
   void set m31(double value) {dest[6] = value;}
-  double get m31() => dest[6];
+  double get m31 => dest[6];
   void set m32(double value) {dest[7] = value;}
-  double get m32() => dest[7];
+  double get m32 => dest[7];
   void set m33(double value) {dest[8] = value;}
-  double get m33() => dest[8];
+  double get m33 => dest[8];
 
 /**
  * Copies the values of one mat3 to another
@@ -128,7 +130,7 @@ Matrix3 Identity([Matrix3 result]) {
  */
 Matrix3 Transpose(Matrix3 mat, [Matrix3 result]) {
     // If we are transposing ourselves we can skip a few steps but have to cache some values
-    if (result == null || mat === result) {
+    if (result == null || identical(mat,result)) {
         var a01 = mat.dest[1], a02 = mat.dest[2],
             a12 = mat.dest[5];
 

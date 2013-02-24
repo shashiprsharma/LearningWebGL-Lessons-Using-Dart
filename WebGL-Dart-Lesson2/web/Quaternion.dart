@@ -1,4 +1,6 @@
-class Quaternion implements Hashable {
+part of glmatrix;
+
+class Quaternion {
   static final PIOVER180 = PI/180;
   static final PI180 = PI*180;
 
@@ -73,13 +75,13 @@ class Quaternion implements Hashable {
   
 
   
-  double get X() => dest[0];
+  double get X => dest[0];
   void set X(double val) { dest[0] = val.toDouble();}
-  double get Y() => dest[1];
+  double get Y => dest[1];
   void set Y(double val) { dest[1] = val.toDouble();}
-  double get Z() => dest[2];
+  double get Z => dest[2];
   void set Z(double val) { dest[2] = val.toDouble();}
-  double get W() => dest[3];
+  double get W => dest[3];
   void set W(double val) { dest[3] = val.toDouble();}
   
   /**
@@ -112,7 +114,7 @@ class Quaternion implements Hashable {
       var x = quat.dest[0], y = quat.dest[1], z = quat.dest[2];
   
       if(result == null) result = new Quaternion.zero();
-      if (quat === result) {
+      if (identical(quat, result)) {
           quat.dest[3] = -sqrt((1.0 - x * x - y * y - z * z).abs());
           return quat;
       }
@@ -394,7 +396,7 @@ class Quaternion implements Hashable {
       // TODO: Would be faster to return [0,0,0,0] immediately if dot == 0
       
       if(result == null) result = new Quaternion.zero();
-      if (quat === result) {
+      if (identical(quat, result)) {
           quat.dest[0] *= -invDot;
           quat.dest[1] *= -invDot;
           quat.dest[2] *= -invDot;
@@ -420,7 +422,7 @@ class Quaternion implements Hashable {
    */
   static Quaternion Conjugate( Quaternion quat, [Quaternion result]) {
       if(result == null) result = new Quaternion.zero();
-      if (quat === result) {
+      if (identical(quat, result)) {
           quat.dest[0] *= -1;
           quat.dest[1] *= -1;
           quat.dest[2] *= -1;
@@ -461,7 +463,7 @@ class Quaternion implements Hashable {
   
       var x = quat.dest[0], y = quat.dest[1], z = quat.dest[2], w = quat.dest[3],
           len = sqrt(x * x + y * y + z * z + w * w);
-      if (len === 0) {
+      if (identical(len, 0)) {
           result.dest[0] = 0.0;
           result.dest[1] = 0.0;
           result.dest[2] = 0.0;
@@ -743,7 +745,7 @@ class Quaternion implements Hashable {
           ratioB;
   
       if ((cosHalfTheta).abs() >= 1.0) {
-          if (result !== quat) {
+          if (!identical(result, quat)) {
               result.dest[0] = quat.dest[0];
               result.dest[1] = quat.dest[1];
               
@@ -790,12 +792,12 @@ class Quaternion implements Hashable {
     return X == object.X && Y == object.Y && Z == object.Z && W == object.W;
   }
   
-  int hashCode() {
+  int get hashCode {
     var erg  = 37;
-        erg += 37 * X.hashCode();
-        erg += 37 * Y.hashCode() * erg;
-        erg += 37 * Z.hashCode() * erg;
-        erg += 37 * W.hashCode() * erg;
+        erg += 37 * X.hashCode;
+        erg += 37 * Y.hashCode * erg;
+        erg += 37 * Z.hashCode * erg;
+        erg += 37 * W.hashCode * erg;
     return erg;
   }
 }

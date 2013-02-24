@@ -1,4 +1,5 @@
 name:  WebGLTut1
 description:  A sample WebGL App
-
+dependencies:
+  browser: any
 

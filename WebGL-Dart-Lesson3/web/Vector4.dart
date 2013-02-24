@@ -1,3 +1,5 @@
+part of glmatrix;
+
 class Vector4 {
   Float32Array dest;
   
@@ -53,13 +55,13 @@ class Vector4 {
   }
   
   
-  double get X() => dest[0];
+  double get X => dest[0];
   void set X(double val) { dest[0] = val;}
-  double get Y() => dest[1];
+  double get Y => dest[1];
   void set Y(double val) { dest[1] = val;}
-  double get Z() => dest[2];
+  double get Z => dest[2];
   void set Z(double val) { dest[2] = val;}
-  double get W() => dest[3];
+  double get W => dest[3];
   void set W(double val) { dest[3] = val;}
   
   /**

@@ -1,4 +1,4 @@
-#library("FragmentShader");
+library FragmentShader;
 
 
 class FragmentShader {

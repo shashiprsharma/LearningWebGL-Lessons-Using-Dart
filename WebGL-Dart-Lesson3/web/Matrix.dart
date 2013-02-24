@@ -1,3 +1,5 @@
+part of glmatrix;
+
 class Matrix {
   
   Matrix._internal() {
@@ -28,40 +30,40 @@ class Matrix {
 
   
   void set m11(double value) {dest[0] = value;}
-  double get m11() => dest[0];
+  double get m11 => dest[0];
   void set m12(double value) {dest[1] = value;}
-  double get m12() => dest[1];
+  double get m12 => dest[1];
   void set m13(double value) {dest[2] = value;}
-  double get m13() => dest[2];
+  double get m13 => dest[2];
   void set m14(double value) {dest[3] = value;}
-  double get m14() => dest[3];
+  double get m14 => dest[3];
   
   void set m21(double value) {dest[4] = value;}
-  double get m21() => dest[4];
+  double get m21 => dest[4];
   void set m22(double value) {dest[5] = value;}
-  double get m22() => dest[5];
+  double get m22 => dest[5];
   void set m23(double value) {dest[6] = value;}
-  double get m23() => dest[6];
+  double get m23 => dest[6];
   void set m24(double value) {dest[7] = value;}
-  double get m24() => dest[7];
+  double get m24 => dest[7];
   
   void set m31(double value) {dest[8] = value;}
-  double get m31() => dest[8];
+  double get m31 => dest[8];
   void set m32(double value) {dest[9] = value;}
-  double get m32() => dest[9];
+  double get m32 => dest[9];
   void set m33(double value) {dest[10] = value;}
-  double get m33() => dest[10];
+  double get m33 => dest[10];
   void set m34(double value) {dest[11] = value;}
-  double get m34() => dest[11];
+  double get m34 => dest[11];
   
   void set m41(double value) {dest[12] = value;}
-  double get m41() => dest[12];
+  double get m41 => dest[12];
   void set m42(double value) {dest[13] = value;}
-  double get m42() => dest[13];
+  double get m42 => dest[13];
   void set m43(double value) {dest[14] = value;}
-  double get m43() => dest[14];
+  double get m43 => dest[14];
   void set m44(double value) {dest[15] = value;}
-  double get m44() => dest[15];
+  double get m44 => dest[15];
   
   
   factory Matrix.zero() {
@@ -189,7 +191,7 @@ class Matrix {
   static Matrix Transpose(Matrix mat, [Matrix result]) {
       // If we are transposing ourselves we can skip a few steps but have to cache some values
     if (result == null) result = new Matrix.zero();
-    if (mat === result) {
+    if (identical(mat,result)) {
         var a01 = mat.dest[1], a02 = mat.dest[2], a03 = mat.dest[3],
             a12 = mat.dest[6], a13 = mat.dest[7],
             a23 = mat.dest[11];
@@ -235,7 +237,7 @@ class Matrix {
   /**
    * Calculates the determinant of [this]
    */
-  double get determinant() {
+  double get determinant {
       // Cache the matrix values (makes for huge speed increases!)
       var a00 = dest[0], a01 = dest[1], a02 = dest[2], a03 = dest[3],
           a10 = dest[4], a11 = dest[5], a12 = dest[6], a13 = dest[7],
@@ -478,7 +480,7 @@ class Matrix {
           a10, a11, a12, a13,
           a20, a21, a22, a23;
   
-      if (result == null || mat === result) {
+      if (result == null || identical(mat,result)) {
           mat.dest[12] = mat.dest[0] * x + mat.dest[4] * y + mat.dest[8] * z + mat.dest[12];
           mat.dest[13] = mat.dest[1] * x + mat.dest[5] * y + mat.dest[9] * z + mat.dest[13];
           mat.dest[14] = mat.dest[2] * x + mat.dest[6] * y + mat.dest[10] * z + mat.dest[14];
@@ -510,7 +512,7 @@ class Matrix {
   static Matrix Scale(Matrix mat, Vector3 vec, [Matrix result]) {
       var x = vec.dest[0], y = vec.dest[1], z = vec.dest[2];
   
-      if (result == null || mat === result) {
+      if (result == null || identical(mat,result)) {
           mat.dest[0] *= x;
           mat.dest[1] *= x;
           mat.dest[2] *= x;
@@ -563,7 +565,7 @@ class Matrix {
           b20, b21, b22;
   
       if (len == null) { return null; }
-      if (len !== 1) {
+      if (!identical(len,1)) {
           len = 1 / len;
           x *= len;
           y *= len;
@@ -585,7 +587,7 @@ class Matrix {
   
       if(result == null) {
           result = mat;
-      } else if (mat !== result) { // If the source and destination differ, copy the unchanged last row
+      } else if (!identical(mat,result)) { // If the source and destination differ, copy the unchanged last row
           result.dest[12] = mat.dest[12];
           result.dest[13] = mat.dest[13];
           result.dest[14] = mat.dest[14];
@@ -633,7 +635,7 @@ class Matrix {
   
       if(result == null) {
           result = mat;
-      } else if (mat !== result) { // If the source and destination differ, copy the unchanged rows
+      } else if (!identical(mat,result)) { // If the source and destination differ, copy the unchanged rows
           result.dest[0] = mat.dest[0];
           result.dest[1] = mat.dest[1];
           result.dest[2] = mat.dest[2];
@@ -683,7 +685,7 @@ class Matrix {
   
       if(result == null) {
           result = mat;
-      } else if (mat !== result) { // If the source and destination differ, copy the unchanged rows
+      } else if (!identical(mat,result)) { // If the source and destination differ, copy the unchanged rows
           result.dest[4] = mat.dest[4];
           result.dest[5] = mat.dest[5];
           result.dest[6] = mat.dest[6];
@@ -733,7 +735,7 @@ class Matrix {
   
       if(result == null) {
           result = mat;
-      } else if (mat !== result) { // If the source and destination differ, copy the unchanged last row
+      } else if (!identical(mat,result)) { // If the source and destination differ, copy the unchanged last row
           result.dest[8] = mat.dest[8];
           result.dest[9] = mat.dest[9];
           result.dest[10] = mat.dest[10];
@@ -876,7 +878,7 @@ class Matrix {
           centery = center.dest[1],
           centerz = center.dest[2];
   
-      if (eyex === centerx && eyey === centery && eyez === centerz) {
+      if (identical(eyex, centerx) && identical(eyey, centery) && identical(eyez, centerz)) {
           return Matrix.Identity(result);
       }
   

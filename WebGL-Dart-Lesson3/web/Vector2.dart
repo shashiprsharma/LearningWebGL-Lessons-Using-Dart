@@ -1,4 +1,6 @@
-class Vector2 implements Hashable {
+part of glmatrix;
+
+class Vector2{
   Float32Array dest;  
   
   Vector2(double x, double y) {
@@ -8,10 +10,10 @@ class Vector2 implements Hashable {
   }
   
   
-  double get X() => dest[0];
+  double get X => dest[0];
   void set X(double x) { dest[0] = x; }
   
-  double get Y() => dest[1];
+  double get Y => dest[1];
   void set Y(double y) { dest[1] = y; }
   
   String toString() => "[$X, $Y]";
@@ -21,7 +23,7 @@ class Vector2 implements Hashable {
     return X == object.X && Y == object.Y;
   }
   
-  int get hashCode() {
+  int get hashCode {
     var erg  = 37;
         erg += 37 * X.hashCode;
         erg += 37 * Y.hashCode * erg;
